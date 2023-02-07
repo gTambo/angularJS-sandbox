@@ -73,7 +73,7 @@ this server is:
 npm start
 ```
 
-Now browse to the app at [`localhost:8000/index.html`][local-app-url].
+Now browse to the app at [`localhost:3000/index.html`][local-app-url].
 
 
 ## Directory Layout
@@ -242,7 +242,7 @@ sudo npm install -g http-server
 Then you can start your own development web server to serve static files from any folder by running:
 
 ```
-http-server -a localhost -p 8000
+http-server -a localhost -p 3000
 ```
 
 Alternatively, you can choose to configure your own web server, such as Apache or Nginx. Just
@@ -288,7 +288,7 @@ For more information on AngularJS please check out [angularjs.org][angularjs].
 [jdk]: https://wikipedia.org/wiki/Java_Development_Kit
 [jdk-download]: http://www.oracle.com/technetwork/java/javase/downloads
 [karma]: https://karma-runner.github.io/
-[local-app-url]: http://localhost:8000/index.html
+[local-app-url]: http://localhost:3000/index.html
 [node]: https://nodejs.org/
 [npm]: https://www.npmjs.org/
 [protractor]: http://www.protractortest.org/
