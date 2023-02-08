@@ -4,4 +4,6 @@ angular.module('myApp.helloWorld', ['ngRoute'])
       templateUrl: 'helloWorld/helloWorld.template.html',
       controller: 'HelloWorld'
     });
+  }]).controller('HelloWorld', [function(){
+    
   }]);
