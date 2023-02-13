@@ -1,7 +1,18 @@
 <main class="">
-  <p>This is the partial for view 2.</p>
-  <p>
-    Showing of 'interpolate' filter:
-    {{ 'Current version is v%VERSION%.' | interpolate }}
-  </p>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>MAIN</th>
+        <th>item</th>
+        <th>date</th>
+      </tr>
+    </thead>
+    <tbody ng-repeat="item in tableData">
+      <tr>
+        <th>{{item.id}}</th>
+        <td>{{item.column1}}</td>
+        <td>{{item.column2}}</td>
+      </tr>
+    </tbody>
+  </table>
 </main>
