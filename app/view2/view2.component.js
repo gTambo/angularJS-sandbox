@@ -4,23 +4,42 @@ angular.module('view2').
     component('view2', {
         templateUrl: 'view2/view2.template.html',
         controller: function View2Controller() {
-            this.today = new Date().toISOString().slice(0, 10);
+            let todaysDate = new Date();
+            let nextWeek = new Date()
+            nextWeek.setDate(todaysDate.getDate() + 7);
+              
+            this.today = todaysDate;
+            this.task = {
+                description: 'New Task',
+                date: todaysDate
+            }
             this.tableData = [
                 {
-                    id: 'Row-1',
-                    column1: 'hello',
-                    column2: 'world'
+                    id: 1,
+                    description: 'Write a to-do list in AngularJS',
+                    date: nextWeek
                 },
                 { 
-                    id: 'Row-2', 
-                    column1: 'goodbye', 
-                    column2: 'happiness' 
+                    id: 2, 
+                    description: 'goodbye', 
+                    date: todaysDate
                 },
                 { 
-                    id: 'Row-3', 
-                    column1: 'Paul',
-                    column2: 'Simon' 
+                    id: 3, 
+                    description: 'Paul',
+                    date: 'Simon' 
                 }
             ];
+            this.submit = function(){
+                console.log("clicked submit", this.task, "existing tasks", this.tableData);
+                if(this.task){
+                    this.task.id = this.tableData.length + 1;
+                    this.tableData.push(this.task);
+                    }
+                    this.task = {
+                        description: '',
+                        date: todaysDate
+                    }
+            }
           }
     });

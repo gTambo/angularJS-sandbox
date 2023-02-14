@@ -1,7 +1,7 @@
 <main class="">
-  <form>
-    <input type="text" placeholder="task here">
-    <input type="date" value="{{$ctrl.today}}">
+  <form ng-submit="$ctrl.submit()">
+    <input id="task_description" type="text" ng-model="$ctrl.task.description">
+    <input id="task_date" type="date" ng-model="$ctrl.task.date">
     <button type="submit">Add</button>
   </form>
   <table border="1">
@@ -14,9 +14,9 @@
     </thead>
     <tbody ng-repeat="item in $ctrl.tableData">
       <tr>
-        <th>{{item.id}}</th>
-        <td>{{item.column1}}</td>
-        <td>{{item.column2}}</td>
+        <th>Row-{{item.id}}</th>
+        <td>{{item.description}}</td>
+        <td>{{item.date.toLocaleDateString()}}</td>
       </tr>
     </tbody>
   </table>
