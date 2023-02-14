@@ -4,15 +4,16 @@
   list-style: none;
   border-bottom: 0.1em solid black;
   margin-bottom: 2em;
+  margin-left: 1em;
   padding: 0 0 0.5em;
 }
 
 .menu:before {
-  content: "[";
+  content: "|";
 }
 
 .menu:after {
-  content: "]";
+  content: "|";
 }
 
 .menu > li {
@@ -20,6 +21,20 @@
 }
 
 .menu > li + li:before {
-  content: "|";
+  content: "||";
   padding-right: 0.3em;
+}
+
+.greeting > * {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: larger;
+  font-weight: 700 !important;
+  padding: 4rem;
+  color:darkslategrey;
+  background-color: coral;
+}
+
+main {
+padding-left: 1em;
+background-color: gold;
 }
