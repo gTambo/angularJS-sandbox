@@ -4,6 +4,7 @@ angular.module('view2').
     component('view2', {
         templateUrl: 'view2/view2.template.html',
         controller: function View2Controller() {
+            this.today = new Date().toISOString().slice(0, 10);
             this.tableData = [
                 {
                     id: 'Row-1',
