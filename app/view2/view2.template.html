@@ -10,6 +10,7 @@
         <th>MAIN</th>
         <th>item</th>
         <th>date</th>
+        <th>done</th>
       </tr>
     </thead>
     <tbody ng-repeat="item in $ctrl.tableData">
@@ -17,6 +18,7 @@
         <th>Row-{{item.id}}</th>
         <td>{{item.description}}</td>
         <td>{{item.date.toLocaleDateString()}}</td>
+        <td><input type="checkbox" ng-click="$ctrl.removeTask(this.item.id)"/>&nbsp;Complete</td>
       </tr>
     </tbody>
   </table>

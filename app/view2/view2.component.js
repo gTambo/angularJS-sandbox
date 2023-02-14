@@ -21,13 +21,8 @@ angular.module('view2').
                 },
                 { 
                     id: 2, 
-                    description: 'goodbye', 
+                    description: 'Do stuff', 
                     date: todaysDate
-                },
-                { 
-                    id: 3, 
-                    description: 'Paul',
-                    date: 'Simon' 
                 }
             ];
             this.submit = function(){
@@ -37,9 +32,13 @@ angular.module('view2').
                     this.tableData.push(this.task);
                     }
                     this.task = {
-                        description: '',
+                        description: 'New Task',
                         date: todaysDate
                     }
+            }
+            this.removeTask = function(id) {
+                console.log('removing item: ', id);
+                this.tableData = this.tableData.filter(task => task.id !== id);
             }
           }
     });
