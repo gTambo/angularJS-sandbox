@@ -8,16 +8,17 @@ module.exports = function(config) {
       'lib/angular/angular.js',
       'lib/angular-route/angular-route.js',
       '../node_modules/angular-mocks/angular-mocks.js',
-      'core/**/*.js',
-      'view*/**/*.js',
-      'helloWorld/**/*.js'
+      '**/*.module.js',
+      '*!(.module|.spec).js',
+      '!(lib)/**/*!(.module|.spec).js',
+      '**/*.spec.js'
     ],
 
     autoWatch: true,
 
     frameworks: ['jasmine'],
 
-    browsers: ['Chrome'],
+    browsers: ['Chrome', 'Firefox'],
 
     plugins: [
       'karma-chrome-launcher',

@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('helloWorld').
-    component('HelloWorld', {
-        templateUrl: 'helloWorld/helloWorld.template.html',
+    component('helloWorld', {
+        templateUrl: 'hello-world/hello-world.template.html',
         controller: function HelloWorldController() {
             
         }

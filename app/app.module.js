@@ -7,9 +7,4 @@ angular.module('myApp', [
   'view2',
   'helloWorld',
   'myApp.version'
-]).
-config(['$routeProvider', function($locationProvider, $routeProvider) {
-  
-
-  
-}]);
+]);
