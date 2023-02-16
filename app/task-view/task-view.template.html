@@ -16,6 +16,7 @@
            required />
     <button type="submit">Add</button>
   </form>
+  <!-- <p>{{$ctrl.taskList}}</p> -->
   <table class="task-table">
     <thead>
       <tr>
@@ -26,12 +27,12 @@
         <th>Done</th>
       </tr>
     </thead>
-    <tbody ng-repeat="item in $ctrl.tableData">
+    <tbody ng-repeat="item in $ctrl.taskList">
       <tr>
         <th>Row-{{item.id}}</th>
         <td>{{item.name}}</td>
         <td>{{item.details}}</td>
-        <td>{{item.date.toLocaleDateString()}}</td>
+        <td>{{item.date.slice(3, 15)}}</td>
         <td><input type="checkbox" ng-click="$ctrl.removeTask(this.item.id)"/>&nbsp;Complete</td>
       </tr>
     </tbody>

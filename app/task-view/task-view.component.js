@@ -3,55 +3,52 @@
 angular.module('taskView').
     component('taskView', {
         templateUrl: 'task-view/task-view.template.html',
-        controller: function TaskViewController() {
+        controller: ['$http', function TaskViewController($http) {
             let todaysDate = new Date();
             let nextWeek = new Date()
             nextWeek.setDate(todaysDate.getDate() + 7);
-              
-            this.today = todaysDate;
-            this.task = {
+            let self = this;
+            // self.today = todaysDate;
+            self.task = {
                 name: '',
                 details: '',
                 type: '',
                 date: todaysDate
             }
-            this.tableData = [
-                {
-                    id: 1,
-                    name: "Write a to-do list in AngularJS",
-                    details: "That's what this is...",
-                    type: "",
-                    date: nextWeek
-                }, { 
-                    id: 2, 
-                    name: "Do stuff",
-                    details: "Any-stuff",
-                    type: "",
-                    date: todaysDate
-                }, { 
-                    id: 3, 
-                    name: "Delete this task",
-                    details: "click the check-box under 'Done'",
-                    type: "",
-                    date: todaysDate
-                }
-            ];
-            this.submit = function(){
-                console.log("clicked submit", this.task, "existing tasks", this.tableData);
-                if(this.task){
-                    this.task.id = this.tableData.length + 1;
-                    this.tableData.push(this.task);
-                    }
-                    this.task = {
+            $http.get('tasks/tasks.json').then(function(response) {
+                self.taskList = response.data;
+                console.log(response.status, response.statusText + ", got tasks: ", self.taskList);
+              });
+            self.submit = function(){
+                console.log("clicked submit", self.task, "existing tasks", self.taskList);
+                
+                    self.task.id = self.taskList.length + 1;
+                    $http({
+                        method: 'POST',
+                        url: 'app/tasks/tasks.json',
+                        data: self.task
+                    }).then(function successCallback(response) {
+                        // this callback will be called asynchronously
+                        // when the response is available
+                        $http.get('tasks/tasks.json').then(function(response) {
+                            self.taskList = response.data;
+                            console.log(response.status, response.statusText, self.taskList);
+                          });
+                      }, function errorCallback(response) {
+                        // called asynchronously if an error occurs
+                        // or server returns response with an error status.
+                        console.error(response.status, "ERROR: ", response.statusText);
+                      });
+                    self.task = {
                         name: "",
                         details: "",
                         type: "",
                         date: todaysDate
                     }
-            }
-            this.removeTask = function(id) {
+                }
+            self.removeTask = function(id) {
                 console.log('removing item: ', id);
-                this.tableData = this.tableData.filter(task => task.id !== id);
+                self.taskList = self.taskList.filter(task => task.id !== id);
             }
-          }
+          }]
     });
