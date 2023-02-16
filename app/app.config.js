@@ -13,8 +13,8 @@ angular.
             when('/view1', {
                 template: '<view-1></view-1>'
               }).
-            when('/view2', {
-                template: '<view-2></view-2>'
+            when('/taskview', {
+                template: '<task-view></task-view>'
             }).
             otherwise({redirectTo: '/helloworld'});
         }

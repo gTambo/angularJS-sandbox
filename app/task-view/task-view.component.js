@@ -1,9 +1,9 @@
 'use strict';
 
-angular.module('view2').
-    component('view2', {
-        templateUrl: 'view2/view2.template.html',
-        controller: function View2Controller() {
+angular.module('taskView').
+    component('taskView', {
+        templateUrl: 'task-view/task-view.template.html',
+        controller: function TaskViewController() {
             let todaysDate = new Date();
             let nextWeek = new Date()
             nextWeek.setDate(todaysDate.getDate() + 7);

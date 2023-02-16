@@ -1,15 +1,15 @@
 'use strict';
 
-describe('view2 module', function() {
+describe('taskView module', function() {
 
-  beforeEach(module('view2'));
+  beforeEach(module('taskView'));
 
-  describe('View2Controller', function(){
+  describe('TaskViewController', function(){
     let ctrl;
 
     beforeEach(inject(function($componentController) {
       //spec body
-      ctrl = $componentController('view2');
+      ctrl = $componentController('taskView');
       
       }));
     it('should render without crashing', function() {
@@ -21,7 +21,7 @@ describe('view2 module', function() {
       expect(ctrl.tableData.length).toBeGreaterThan(0);
     });
 
-    
+
 
   });
 });

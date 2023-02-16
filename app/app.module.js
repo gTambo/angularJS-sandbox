@@ -4,7 +4,7 @@
 angular.module('myApp', [
   'ngRoute',
   'view1',
-  'view2',
+  'taskView',
   'helloWorld',
   'myApp.version'
 ]);
