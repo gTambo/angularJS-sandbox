@@ -7,9 +7,8 @@ describe('view1 module', function() {
   describe('View1Ctrl', function(){
     let ctrl;
 
-    it('should ....', inject(function($componentController) {
+    it('should render without crashing', inject(function($componentController) {
       //spec body
-      // var scope = {};
       ctrl = $componentController('view1');
       
       expect(ctrl).toBeDefined();

@@ -12,9 +12,16 @@ describe('view2 module', function() {
       ctrl = $componentController('view2');
       
       }));
-    it('should ....', function() {
+    it('should render without crashing', function() {
       expect(ctrl).toBeDefined();
     });
+
+    it('should create a "tableData" model with at least one item', function() {
+      
+      expect(ctrl.tableData.length).toBeGreaterThan(0);
+    });
+
+    
 
   });
 });

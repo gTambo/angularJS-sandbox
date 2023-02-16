@@ -10,18 +10,29 @@ angular.module('view2').
               
             this.today = todaysDate;
             this.task = {
-                description: 'New Task',
+                name: '',
+                details: '',
+                type: '',
                 date: todaysDate
             }
             this.tableData = [
                 {
                     id: 1,
-                    description: 'Write a to-do list in AngularJS',
+                    name: "Write a to-do list in AngularJS",
+                    details: "That's what this is...",
+                    type: "",
                     date: nextWeek
-                },
-                { 
+                }, { 
                     id: 2, 
-                    description: 'Do stuff', 
+                    name: "Do stuff",
+                    details: "Any-stuff",
+                    type: "",
+                    date: todaysDate
+                }, { 
+                    id: 3, 
+                    name: "Delete this task",
+                    details: "click the check-box under 'Done'",
+                    type: "",
                     date: todaysDate
                 }
             ];
@@ -32,7 +43,9 @@ angular.module('view2').
                     this.tableData.push(this.task);
                     }
                     this.task = {
-                        description: 'New Task',
+                        name: "",
+                        details: "",
+                        type: "",
                         date: todaysDate
                     }
             }
