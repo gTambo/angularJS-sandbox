@@ -4,6 +4,7 @@ angular.module('taskView').
     component('taskView', {
         templateUrl: 'task-view/task-view.template.html',
         controller: ['$http', function TaskViewController($http) {
+            const self = this;
             let todaysDate = new Date();
             let nextWeek = new Date()
             const reformatDateValues = function(arr){
@@ -13,7 +14,7 @@ angular.module('taskView').
                 return arr;
             };
             nextWeek.setDate(todaysDate.getDate() + 7);
-            let self = this;
+            
             // self.today = todaysDate;
             self.task = {
                 name: '',

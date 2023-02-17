@@ -36,11 +36,18 @@ app.get('/alltasks', (req, res) => {
     res.send(incompleteTaskList);
 });
 
+app.get('/completedtasks', (req, res) => {
+    console.log('fetching /completedtasks', completedTaskList);
+    res.send(completedTaskList);
+});
+
 app.patch('/', (req, res) => {
     const taskId = req.body.id;
     let index = incompleteTaskList.indexOf(x => x.id === taskId)
-    let completedTask = incompleteTaskList.splice(index, 1);
-    completedTaskList.push(completedTask);
+    
+    let completedTask = incompleteTaskList.splice(index, 1); // this is an array with one object
+    console.log('removing item', index, completedTask);
+    completedTaskList.push(completedTask[0]); // just add the object, not the whole array
     res.send({message: `removed ${taskId}`});
 });
 
