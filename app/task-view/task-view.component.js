@@ -57,9 +57,22 @@ angular.module('taskView').
                         date: todaysDate
                     }
                 }
-            self.removeTask = function(id) {
-                console.log('removing item: ', id);
-                self.taskList = self.taskList.filter(task => task.id !== id);
+            self.removeTask = function(item) {
+                console.log('removing item: ', item);
+                // self.taskList = self.taskList.filter(task => task.item !== item);
+                $http.patch('http://localhost:5000/', item).then(function successCallback(response) {
+                    // this callback will be called asynchronously
+                    // when the response is available
+                    console.log(response.status, response.statusText);
+                    $http.get('http://localhost:5000/alltasks').then(function(response) {
+                        self.taskList = reformatDateValues(response.data);
+                        console.log(response.status, response.statusText, self.taskList);
+                    });
+                }, function errorCallback(response) {
+                    // called asynchronously if an error occurs
+                    // or server returns response with an error status.
+                    console.error(response.status, "ERROR: ", response.statusText);
+                });
             }
           }]
     });

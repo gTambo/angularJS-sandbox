@@ -36,8 +36,8 @@ app.get('/alltasks', (req, res) => {
     res.send(incompleteTaskList);
 });
 
-app.patch('/:id', (req, res) => {
-    const taskId = req.params.id;
+app.patch('/', (req, res) => {
+    const taskId = req.body.id;
     let index = incompleteTaskList.indexOf(x => x.id === taskId)
     let completedTask = incompleteTaskList.splice(index, 1);
     completedTaskList.push(completedTask);
