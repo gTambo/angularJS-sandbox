@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "name": "Write a to-do list in AngularJS",
+        "details": "That's what this is...",
+        "type": "",
+        "date": "Thu Feb 16 2023 15:07:16 GMT-0600 (Central Standard Time)"
+    },
+    {
+        "id": 2,
+        "name": "Do stuff",
+        "details": "Any-stuff",
+        "type": "",
+        "date": "Thu Feb 16 2023 15:25:37 GMT-0600 (Central Standard Time)"
+    },
+    {
+        "id": 1,
+        "name": "Delete this task",
+        "details": "click the check-box under 'Done'",
+        "type": "",
+        "date": "Thu Feb 16 2023 15:25:37 GMT-0600 (Central Standard Time)"
+    }
+]

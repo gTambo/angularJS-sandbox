@@ -1,0 +1,40 @@
+<main class="tasklist-view">
+  <form ng-submit="$ctrl.submit()">
+    <input id="task_name" 
+           type="text" 
+           ng-model="$ctrl.task.name" 
+           placeholder="so do something"
+           required />
+    <input id="task_details" 
+           type="text" 
+           ng-model="$ctrl.task.details" 
+           placeholder="but, how?"
+           required />
+    <input id="task_date" 
+           type="date" 
+           ng-model="$ctrl.task.date"
+           required />
+    <button type="submit">Add</button>
+  </form>
+  <!-- <p>{{$ctrl.taskList}}</p> -->
+  <table class="task-table">
+    <thead>
+      <tr>
+        <th>To-Do-List</th>
+        <th>Task Name</th>
+        <th>Details</th>
+        <th>Target Completion Date</th>
+        <th>Done</th>
+      </tr>
+    </thead>
+    <tbody ng-repeat="item in $ctrl.taskList">
+      <tr>
+        <th>Row-{{item.id}}</th>
+        <td>{{item.name}}</td>
+        <td>{{item.details}}</td>
+        <td>{{item.date.slice(3, 15)}}</td>
+        <td><input type="checkbox" ng-click="$ctrl.removeTask(this.item.id)"/>&nbsp;Complete</td>
+      </tr>
+    </tbody>
+  </table>
+</main>

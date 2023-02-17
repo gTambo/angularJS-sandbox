@@ -35,6 +35,27 @@
 }
 
 main {
-padding-left: 1em;
-background-color: gold;
+  margin: 0 auto;
+  padding: 0.5em;
+  width: fit-content;
+  background-color: rgb(177, 219, 255);
+}
+
+.task-table {
+  border: solid 2px coral;
+  border-radius: 5px;
+}
+.task-table th {
+  border: solid 1px pink;
+  border-radius: 4px;
+}
+.task-table td {
+  min-height: 30px;
+  line-height: 26px;
+  background-color: aliceblue;
+  color: #444444;
+  border: solid 1px goldenrod;
+  border-radius: 4px;
+  text-align: center;
+  padding: 7px 15px 5px 15px;
 }
