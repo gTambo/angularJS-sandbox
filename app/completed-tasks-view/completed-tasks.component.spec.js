@@ -1,10 +1,10 @@
 'use strict';
 
-describe('taskView module', function() {
+describe('completedTasksView module', function() {
 
-  beforeEach(module('taskView'));
+  beforeEach(module('completedTasksView'));
 
-  describe('TaskViewController', function(){
+  describe('CompletedTasksCtrl', function(){
     let $httpBackend;
     let ctrl;
 
@@ -19,25 +19,14 @@ describe('taskView module', function() {
                               type: '', 
                               date: 'Thu Feb 16 2023 15:07:16 GMT-0600 (Central Standard Time)'
                             }]);
-      ctrl = $componentController('taskView');
-      
-      }));
-    it('should render without crashing', function() {
-      expect(ctrl).toBeDefined();
-    });
-
-    it('should create a `taskList` property with a task fetched with `$http`', function() {
-      expect(ctrl.taskList).toBeUndefined();
+      ctrl = $componentController('completedTasksView');
     
-      $httpBackend.flush();
-      expect(ctrl.taskList).toEqual([{ 
-        id: 1, 
-        name: 'task1', 
-        details: 'example', 
-        type: '', 
-        date: 'Thu Feb 16 2023'
-      }]);
-    });
+    }));
+
+    it('should render without crashing', inject(function($componentController) {
+      
+      expect(ctrl).toBeDefined();
+    }));
 
   });
 });

@@ -1,9 +1,9 @@
 'use strict';
 
-angular.module('view1').
-    component('view1', {
-        templateUrl: 'view1/view1.template.html',
-        controller: ['$http', function View1Ctrl($http) {
+angular.module('completedTasksView').
+    component('completedTasksView', {
+        templateUrl: 'completed-tasks-view/completed-tasks.template.html',
+        controller: ['$http', function CompletedTasksCtrl($http) {
             const self = this;
             const reformatDateValues = function(arr){
                 for(let item = 0; item < arr.length; item++){

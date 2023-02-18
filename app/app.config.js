@@ -10,8 +10,8 @@ angular.
             when('/helloworld', {
                 template: '<hello-world></hello-world>'
             }).
-            when('/view1', {
-                template: '<view-1></view-1>'
+            when('/completedTasksView', {
+                template: '<completed-tasks-view></completed-tasks-view>'
               }).
             when('/taskview', {
                 template: '<task-view></task-view>'
