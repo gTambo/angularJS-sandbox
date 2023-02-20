@@ -1,7 +1,4 @@
-<main>
-    <input type="text" ng-model="$ctrl.page"/>
-    <p ng-bind="$ctrl.page"></p>
-    
+<main>    
     <table class="task-table">
         <thead>
           <tr>
@@ -9,7 +6,6 @@
             <th>Task Name</th>
             <th>Details</th>
             <th>Target Completion Date</th>
-            <!-- <th>Done</th> -->
           </tr>
         </thead>
         <tbody ng-repeat="task in $ctrl.completedTaskList">
@@ -18,7 +14,6 @@
             <td>{{task.name}}</td>
             <td>{{task.details}}</td>
             <td>{{task.date}}</td>
-            <!-- <td><input type="checkbox" ng-click="$ctrl.removeTask(this.item)"/>&nbsp;Complete</td> -->
           </tr>
         </tbody>
       </table>
