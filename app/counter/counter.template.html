@@ -1,6 +1,9 @@
 <main>
-    <p>Here's a counter</p>
-    <button ng-click="count = count - 1" ng-init="count=0">counter -1</button>
-    <span> count: {{count}} </span>
-    <button ng-click="count = count + 1">counter +1</button>
+    <p class="h-center">Here's a counter</p>
+    <div>
+        <button ng-click="count = count - 1" ng-init="count=0">counter -1</button>
+        <span> count: {{count}} </span>
+        <button ng-click="count = count + 1">counter +1</button>
+    </div>
+    <button class="h-center" ng-click="count = 0">Reset</button>
 </main>

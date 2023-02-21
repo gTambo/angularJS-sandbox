@@ -59,3 +59,10 @@ main {
   text-align: center;
   padding: 7px 15px 5px 15px;
 }
+
+.h-center {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}
+
