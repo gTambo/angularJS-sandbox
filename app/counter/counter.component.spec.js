@@ -5,10 +5,17 @@ describe('counter module', function() {
     beforeEach(module('counter'));
 
     describe('counter controller', function() {
-        it('should....', inject(function($componentController) {
-            // spec body
-            var counterCtrl = $componentController('counter');
-            expect(counterCtrl).toBeDefined();
+        let counterCtrl;
+        beforeEach(inject(function($componentController) {
+            counterCtrl = $componentController('counter');
         }));
+        it('should exist', function() {
+            // spec body
+            expect(counterCtrl).toBeDefined();
+        });
+        
+        it('should initiate a counter equal to 0', function() {
+            expect(counterCtrl.count).toEqual(0);
+        });
     });
 });
