@@ -15,6 +15,8 @@ angular.
               }).
             when('/taskview', {
                 template: '<task-view></task-view>'
+            }).when('/counter', {
+                template: '<counter></counter>'
             }).
             otherwise({redirectTo: '/helloworld'});
         }

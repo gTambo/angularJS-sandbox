@@ -4,7 +4,8 @@
 angular.module('myApp', [
   'ngRoute',
   'completedTasksView',
-  'taskView',
+  'counter',
   'helloWorld',
+  'taskView',
   'myApp.version'
 ]);
