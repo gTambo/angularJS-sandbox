@@ -29,7 +29,7 @@ angular.module('taskView').
                 console.error(response.status, "ERROR: ", response.statusText);
               });
             self.submit = function(){
-                    self.task.id = self.taskList.length + 1;
+                    // self.task.id = self.taskList.length + 1;
                     $http({
                         method: 'POST',
                         url: 'http://localhost:5000/newtask',

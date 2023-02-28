@@ -23,9 +23,19 @@ app.use(cors());
 // Serve static files from the public/ folder
 app.use(express.static('../app/index.html'));
 
+function* idMaker() {
+    let index = 2;
+    while (true) {
+      yield index++;
+    }
+  }
+  
+const gen = idMaker();
+
 app.post('/newtask', (req, res) => {
     console.log('received new task: ', req.body);
     const newTaskToAdd = req.body;
+    newTaskToAdd.id = gen.next().value;
     incompleteTaskList.push(newTaskToAdd);
     res.send({ message: 'Success!' });
 });
@@ -43,12 +53,16 @@ app.get('/completedtasks', (req, res) => {
 
 app.patch('/', (req, res) => {
     const taskId = req.body.id;
-    let index = incompleteTaskList.indexOf(x => x.id === taskId)
-    
-    let completedTask = incompleteTaskList.splice(index, 1); // this is an array with one object
-    console.log('removing item', index, completedTask);
-    completedTaskList.push(completedTask[0]); // just add the object, not the whole array
-    res.send({message: `removed ${taskId}`});
+    console.log(`request to remove item id=${taskId}`);
+    let index = incompleteTaskList.findIndex(x => x.id === taskId);
+    console.log(`index=${index}, incomplete task list: ${incompleteTaskList}`);
+    if( index === -1 ) console.log(`task with id=${taskId} not found`);
+    else {
+        let completedTask = incompleteTaskList.splice(index, 1); // this is an array with one object
+        console.log('removing item', index, completedTask);
+        completedTaskList.push(completedTask[0]); // just add the object, not the whole array
+        res.send({message: `removed ${taskId}`});
+    }
 });
 
 // Start the server
