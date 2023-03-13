@@ -59,3 +59,24 @@ main {
   text-align: center;
   padding: 7px 15px 5px 15px;
 }
+
+.h-center {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.counter-btns {
+  display: flex;
+  margin: 1em;
+  width: 20em;
+  justify-content: space-between;
+}
+
+.count-display {
+  font-weight: bold;
+  font-size: larger;
+  margin: 0 0.9em;
+  color:aliceblue;
+  background-color:#444444;
+}
