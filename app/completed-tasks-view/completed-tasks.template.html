@@ -6,6 +6,7 @@
             <th>Task Name</th>
             <th>Details</th>
             <th>Target Completion Date</th>
+            <th>Restore</th>
           </tr>
         </thead>
         <tbody ng-repeat="task in $ctrl.completedTaskList">
@@ -14,6 +15,7 @@
             <td>{{task.name}}</td>
             <td>{{task.details}}</td>
             <td>{{task.date}}</td>
+            <td><input type="checkbox" ng-click="$ctrl.restoreTask(this.task)"/>&nbsp;undo</td>
           </tr>
         </tbody>
       </table>

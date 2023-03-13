@@ -86,7 +86,7 @@ app.get('/completedtasks', (req, res) => {
 
 app.patch('/', (req, res) => {
     const taskId = req.body.id;
-    console.log(`request to remove item id=${taskId}`);
+    console.log(`request to update item id=${taskId}`);
     const queryText = `UPDATE "tasks" SET "is_completed" = NOT "is_completed" WHERE "id" = $1 RETURNING *`
     pool.query(queryText, [taskId]).then((result) => {
         res.sendStatus(200);
