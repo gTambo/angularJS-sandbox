@@ -62,33 +62,47 @@ app.post('/newtask', (req, res) => {
 // req is request, res is the response
 app.get('/alltasks', (req, res) => {
     console.log('in GET /items');
-    const queryText = 'SELECT * FROM "tasks" ORDER BY "id";';
+    const queryText = `SELECT * FROM "tasks" WHERE "is_completed" = 'FALSE' ORDER BY "id";`;
     pool.query(queryText).then((result) => { // expecting table results from database
         res.send(result.rows); //send array of rows objects
     }).catch(error => {
-        console.log('error getting tasks', error);
+        console.log('error getting incomplete tasks', error);
         res.sendStatus(500);
     });
     // res.send(incompleteTaskList);
 });
 
 app.get('/completedtasks', (req, res) => {
-    console.log('fetching /completedtasks', completedTaskList);
-    res.send(completedTaskList);
+    // console.log('fetching /completedtasks', completedTaskList);
+    // res.send(completedTaskList);
+    const queryText = `SELECT * FROM "tasks" WHERE "is_completed" = 'TRUE' ORDER BY "id";`;
+    pool.query(queryText).then((result) => { // expecting table results from database
+        res.send(result.rows); //send array of rows objects
+    }).catch(error => {
+        console.log('error getting completed tasks', error);
+        res.sendStatus(500);
+    });
 });
 
 app.patch('/', (req, res) => {
     const taskId = req.body.id;
     console.log(`request to remove item id=${taskId}`);
-    let index = incompleteTaskList.findIndex(x => x.id === taskId);
-    console.log(`index=${index}, incomplete task list: ${incompleteTaskList}`);
-    if( index === -1 ) console.log(`task with id=${taskId} not found`);
-    else {
-        let completedTask = incompleteTaskList.splice(index, 1); // this is an array with one object
-        console.log('removing item', index, completedTask);
-        completedTaskList.push(completedTask[0]); // just add the object, not the whole array
-        res.send({message: `removed ${taskId}`});
-    }
+    const queryText = `UPDATE "tasks" SET "is_completed" = NOT "is_completed" WHERE "id" = $1 RETURNING *`
+    pool.query(queryText, [taskId]).then((result) => {
+        res.sendStatus(200);
+    }).catch(error => {
+        console.error('error updating the task', error);
+        res.sendStatus(500);
+    });
+    // let index = incompleteTaskList.findIndex(x => x.id === taskId);
+    // console.log(`index=${index}, incomplete task list: ${incompleteTaskList}`);
+    // if( index === -1 ) console.log(`task with id=${taskId} not found`);
+    // else {
+    //     let completedTask = incompleteTaskList.splice(index, 1); // this is an array with one object
+    //     console.log('removing item', index, completedTask);
+    //     completedTaskList.push(completedTask[0]); // just add the object, not the whole array
+    //     res.send({message: `removed ${taskId}`});
+    // }
 });
 
 // Start the server
