@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require( 'body-parser' );
 const cors = require('cors');
 const PORT = 5000;
+const pool = require('./pool');
 
 const incompleteTaskList = [{
     "id": 1,
@@ -35,15 +36,40 @@ const gen = idMaker();
 app.post('/newtask', (req, res) => {
     console.log('received new task: ', req.body);
     const newTaskToAdd = req.body;
-    newTaskToAdd.id = gen.next().value;
-    incompleteTaskList.push(newTaskToAdd);
-    res.send({ message: 'Success!' });
+    // newTaskToAdd.id = gen.next().value;
+    // incompleteTaskList.push(newTaskToAdd);
+    // res.send({ message: 'Success!' });
+    const queryText = `
+                INSERT INTO "tasks"
+                ("name", "details", "date", "type")
+                VALUES
+                ($1, $2, $3, $4);
+            `;
+    pool.query(queryText, [ // sending query to database via pool module, filtering client data through pg
+        newTaskToAdd.name,
+        newTaskToAdd.details,
+        newTaskToAdd.date,
+        newTaskToAdd.type,
+    ]).then((result) => { // sending success back to client
+        console.log('POST new task success!');
+        res.sendStatus(201);
+    }).catch((error) => { // in event of error
+        console.log('Error in POST', error);
+        res.sendStatus(500);
+    });
 });
 
 // req is request, res is the response
 app.get('/alltasks', (req, res) => {
     console.log('in GET /items');
-    res.send(incompleteTaskList);
+    const queryText = 'SELECT * FROM "tasks" ORDER BY "id";';
+    pool.query(queryText).then((result) => { // expecting table results from database
+        res.send(result.rows); //send array of rows objects
+    }).catch(error => {
+        console.log('error getting tasks', error);
+        res.sendStatus(500);
+    });
+    // res.send(incompleteTaskList);
 });
 
 app.get('/completedtasks', (req, res) => {
