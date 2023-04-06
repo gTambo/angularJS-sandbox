@@ -5,6 +5,7 @@ angular.module('taskView').
         templateUrl: 'task-view/task-view.template.html',
         controller: ['$http', function TaskViewController($http) {
             const self = this;
+            const urlBase = 'http://localhost:4999'
             let todaysDate = new Date();
             let nextWeek = new Date()
             const reformatDateValues = function(arr){
@@ -21,7 +22,7 @@ angular.module('taskView').
                 type: '',
                 date: todaysDate
             }
-            $http.get('http://localhost:5000/alltasks').then(function successCallback(response) {
+            $http.get(`${urlBase}/alltasks`).then(function successCallback(response) {
                 self.taskList = reformatDateValues(response.data);
               }, function errorCallback(response) {
                 // called asynchronously if an error occurs
@@ -32,12 +33,12 @@ angular.module('taskView').
                     // self.task.id = self.taskList.length + 1;
                     $http({
                         method: 'POST',
-                        url: 'http://localhost:5000/newtask',
+                        url: `${urlBase}/newtask`,
                         data: self.task
                     }).then(function successCallback(response) {
                         // this callback will be called asynchronously
                         // when the response is available
-                        $http.get('http://localhost:5000/alltasks').then(function(response) {
+                        $http.get(`${urlBase}/alltasks`).then(function(response) {
                             self.taskList = reformatDateValues(response.data);
                           });
                       }, function errorCallback(response) {
@@ -54,10 +55,10 @@ angular.module('taskView').
                 }
             self.removeTask = function(item) {
                 // filter out using angular --> self.taskList = self.taskList.filter(task => task.item !== item);
-                $http.patch('http://localhost:5000/', item).then(function successCallback(response) {
+                $http.patch(`${urlBase}/`, item).then(function successCallback(response) {
                     // this callback will be called asynchronously
                     // when the response is available
-                    $http.get('http://localhost:5000/alltasks').then(function(response) {
+                    $http.get(`${urlBase}/alltasks`).then(function(response) {
                         self.taskList = reformatDateValues(response.data);
                     });
                 }, function errorCallback(response) {
